@@ -1,5 +1,6 @@
 package dev.mateusneres.pixpayviewbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.mateusneres.pixpayviewbackend.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
-import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @Getter
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "reportList"})
 public class User {
 
     @Id
@@ -41,5 +43,8 @@ public class User {
 
     @Column(nullable = false, updatable = false)
     private Timestamp createdAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<Transaction> transactionList;
 
 }
