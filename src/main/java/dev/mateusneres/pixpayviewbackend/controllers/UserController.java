@@ -1,6 +1,7 @@
 package dev.mateusneres.pixpayviewbackend.controllers;
 
 import dev.mateusneres.pixpayviewbackend.dtos.request.UserSettingsRequest;
+import dev.mateusneres.pixpayviewbackend.dtos.response.UserDetailsResponse;
 import dev.mateusneres.pixpayviewbackend.entities.User;
 import dev.mateusneres.pixpayviewbackend.exceptions.BadRequestException;
 import dev.mateusneres.pixpayviewbackend.services.UserService;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -35,11 +38,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    /*LIST USERS AND DELETE USER*/
     @GetMapping(value = "/list")
-    public ResponseEntity<Object> listUsers() {
-
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<List<UserDetailsResponse>> listUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
     }
 
 
