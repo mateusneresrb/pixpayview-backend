@@ -1,5 +1,6 @@
 package dev.mateusneres.pixpayviewbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.mateusneres.pixpayviewbackend.enums.TransactionStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,10 +29,7 @@ public class Transaction {
     private String qrcode;
 
     @Column
-    private double value;
-
-    @Column
-    private String message;
+    private double pricing;
 
     @Column(nullable = false)
     private Timestamp updatedAt;
@@ -39,6 +37,7 @@ public class Transaction {
     @Column(nullable = false, updatable = false)
     private Timestamp createdAt;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/")
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
 
-    @PutMapping(value = "/user/settings")
+    @PutMapping(value = "/settings")
     public ResponseEntity<Object> updateUser(@Valid @RequestBody() UserSettingsRequest userSettingsRequest, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new BadRequestException(1, "Request inválido");
@@ -28,13 +28,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping(value = "/user/delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String userID) {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping(value = "/user/list")
+    @GetMapping(value = "/list")
     public ResponseEntity<Object> listUsers() {
 
         return ResponseEntity.status(HttpStatus.OK).build();
