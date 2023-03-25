@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.IllegalFormatException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -33,16 +35,19 @@ public class UserController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String userID) {
-        //??
-        //??DELETE ELE AND CACHE TWO
-        return ResponseEntity.status(HttpStatus.OK).build();
+        try {
+            UUID uuid = UUID.fromString(userID);
+
+            return userService.deleteUser(uuid);
+        } catch (IllegalArgumentException exception) {
+            throw new BadRequestException(1, "Request inválido");
+        }
     }
 
     @GetMapping(value = "/list")
     public ResponseEntity<List<UserDetailsResponse>> listUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
     }
-
 
 }
 
