@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
-public class SignUpResponse {
+public class UserDetailsResponse {
 
     private UUID userID;
     private String name;

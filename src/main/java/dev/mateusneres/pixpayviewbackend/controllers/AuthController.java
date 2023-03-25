@@ -2,8 +2,8 @@ package dev.mateusneres.pixpayviewbackend.controllers;
 
 import dev.mateusneres.pixpayviewbackend.dtos.request.LoginRequest;
 import dev.mateusneres.pixpayviewbackend.dtos.request.SignupRequest;
-import dev.mateusneres.pixpayviewbackend.dtos.response.SignUpResponse;
-import dev.mateusneres.pixpayviewbackend.services.UserService;
+import dev.mateusneres.pixpayviewbackend.dtos.response.UserDetailsResponse;
+import dev.mateusneres.pixpayviewbackend.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class AuthController {
 
-    private UserService userService;
+    private AuthService authService;
 
     @PostMapping(value = "/login")
     public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        return userService.authenticate(loginRequest);
+        return authService.authenticate(loginRequest);
     }
 
     @PostMapping(value = "/refreshtoken")
@@ -31,8 +31,8 @@ public class AuthController {
     }
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<SignUpResponse> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
-        return ResponseEntity.ok(userService.register(signupRequest));
+    public ResponseEntity<UserDetailsResponse> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
+        return ResponseEntity.ok(authService.register(signupRequest));
     }
 
     @PostMapping(value = "/logout")

@@ -30,10 +30,12 @@ public class UserController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String userID) {
-
+        //??
+        //??DELETE ELE AND CACHE TWO
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    /*LIST USERS AND DELETE USER*/
     @GetMapping(value = "/list")
     public ResponseEntity<Object> listUsers() {
 
