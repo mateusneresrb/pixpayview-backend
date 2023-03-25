@@ -1,6 +1,7 @@
 package dev.mateusneres.pixpayviewbackend.config;
 
 import dev.mateusneres.pixpayviewbackend.repositories.UserRepository;
+import dev.mateusneres.pixpayviewbackend.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,16 +18,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequiredArgsConstructor
 public class AppConfig {
 
-    private final UserRepository userRepository;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return userRepository::findByEmail;
     }
 
     @Bean
@@ -37,7 +33,7 @@ public class AppConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(bCryptPasswordEncoder());
         return authProvider;
     }

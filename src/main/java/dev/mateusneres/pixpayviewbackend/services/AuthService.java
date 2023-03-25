@@ -6,6 +6,7 @@ import dev.mateusneres.pixpayviewbackend.dtos.response.LoginResponse;
 import dev.mateusneres.pixpayviewbackend.dtos.response.UserDetailsResponse;
 import dev.mateusneres.pixpayviewbackend.entities.User;
 import dev.mateusneres.pixpayviewbackend.exceptions.AccountAlreadyExistsException;
+import dev.mateusneres.pixpayviewbackend.repositories.UserRepository;
 import dev.mateusneres.pixpayviewbackend.security.jwt.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,8 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserService userService;
+    private final UserRepository userRepository;
+    private final UserDetailsServiceImpl userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
     private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -33,8 +36,8 @@ public class AuthService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
-            User user = userService.getUserByEmail(loginRequest.getEmail());
-            String jwtToken = jwtTokenUtil.generateToken(user);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+            String jwtToken = jwtTokenUtil.generateToken(userDetails);
 
             return ResponseEntity.ok(new LoginResponse(jwtToken));
         } catch (AuthenticationException e) {
@@ -43,7 +46,7 @@ public class AuthService {
     }
 
     public UserDetailsResponse register(SignupRequest signupRequest) {
-        if (userService.existsUserByEmail(signupRequest.getEmail())) {
+        if (userRepository.existsUserByEmail(signupRequest.getEmail())) {
             throw new AccountAlreadyExistsException(301, "The email: " + signupRequest.getEmail() + " address you entered is already registered.");
         }
 
@@ -55,7 +58,7 @@ public class AuthService {
                 new Timestamp(new Date().getTime()),
                 new Timestamp(new Date().getTime()));
 
-        userService.save(user);
+        userRepository.save(user);
 
         UserDetailsResponse signUpResponse = new UserDetailsResponse();
         BeanUtils.copyProperties(user, signUpResponse);
