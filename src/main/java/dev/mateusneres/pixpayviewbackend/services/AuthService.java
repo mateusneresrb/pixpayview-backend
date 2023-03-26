@@ -26,9 +26,9 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class AuthService {
 
+    private final JwtTokenUtil jwtTokenUtil;
     private final UserRepository userRepository;
     private final UserDetailsServiceImpl userDetailsService;
-    private final JwtTokenUtil jwtTokenUtil;
     private final BCryptPasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 

@@ -5,6 +5,7 @@ import dev.mateusneres.pixpayviewbackend.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "users")
 
 @Getter
+@Setter
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "reportList"})
 public class User {

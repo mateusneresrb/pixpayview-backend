@@ -1,17 +1,22 @@
 package dev.mateusneres.pixpayviewbackend.security.jwt;
 
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.UUID;
 
+@Setter
 public class JwtUserDetails implements UserDetails {
 
-    private final String email;
-    private final String password;
-    private final Collection<? extends GrantedAuthority> authorities;
+    private final UUID uuid;
+    private String email;
+    private String password;
+    private Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUserDetails(String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public JwtUserDetails(UUID uuid, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.uuid = uuid;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -25,6 +30,10 @@ public class JwtUserDetails implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     @Override

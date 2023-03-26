@@ -19,7 +19,7 @@ public class RolePrefixingMapper implements GrantedAuthoritiesMapper {
                         return new SimpleGrantedAuthority("ROLE_" + authority.getAuthority());
                     }
                 })
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }
