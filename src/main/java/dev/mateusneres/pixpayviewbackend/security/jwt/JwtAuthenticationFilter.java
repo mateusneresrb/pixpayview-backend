@@ -1,6 +1,7 @@
 package dev.mateusneres.pixpayviewbackend.security.jwt;
 
 import dev.mateusneres.pixpayviewbackend.exceptions.AccountNotExistsException;
+import dev.mateusneres.pixpayviewbackend.services.UserDetailsServiceImpl;
 import dev.mateusneres.pixpayviewbackend.services.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,7 +27,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final UserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
     @Override

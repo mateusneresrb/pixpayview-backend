@@ -61,7 +61,7 @@ public class UserService {
         }
 
         User user = optionalTargetUser.get();
-        if (!optionalUser.get().getUserID().equals(userID) && optionalUser.get().getRole() != Role.ADMIN) {
+        if (!optionalUser.get().getUserID().equals(userID) && optionalUser.get().getRole() != Role.ROLE_ADMIN) {
             throw new ForbiddenException(2, "Usuário não tem permissão para alterar as configurações de outro usuário");
         }
 
