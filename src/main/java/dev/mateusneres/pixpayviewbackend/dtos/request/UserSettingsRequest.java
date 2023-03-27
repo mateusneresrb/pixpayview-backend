@@ -11,20 +11,11 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserSettingsRequest {
 
-    @Email
+    @Email(message = "Email should be valid")
     private String email;
     private String password;
     private String name;
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Override
-    public String toString() {
-        return "UserSettingsRequest{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", role=" + role +
-                '}';
-    }
 }

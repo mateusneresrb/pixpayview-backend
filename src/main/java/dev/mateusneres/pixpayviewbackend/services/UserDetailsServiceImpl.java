@@ -4,7 +4,6 @@ import dev.mateusneres.pixpayviewbackend.entities.User;
 import dev.mateusneres.pixpayviewbackend.repositories.UserRepository;
 import dev.mateusneres.pixpayviewbackend.security.jwt.JwtUserDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,8 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetails.setEmail(user.getEmail());
         userDetails.setPassword(user.getPassword());
         userDetails.setAuthorities(Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name())));
-
-        System.out.println("NOVOS DADOS: " + userDetails.toString());
 
         inMemoryUserDetailsManager.updateUser(userDetails);
     }

@@ -10,13 +10,11 @@ import java.util.UUID;
 @Setter
 public class JwtUserDetails implements UserDetails {
 
-    private final UUID uuid;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
     public JwtUserDetails(UUID uuid, String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.uuid = uuid;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -30,10 +28,6 @@ public class JwtUserDetails implements UserDetails {
     @Override
     public String getPassword() {
         return password;
-    }
-
-    public UUID getUuid() {
-        return uuid;
     }
 
     @Override
@@ -61,15 +55,6 @@ public class JwtUserDetails implements UserDetails {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "JwtUserDetails{" +
-                "uuid=" + uuid +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", authorities=" + authorities +
-                '}';
-    }
 }
 
 

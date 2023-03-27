@@ -8,17 +8,11 @@ import dev.mateusneres.pixpayviewbackend.exceptions.AccountNotExistsException;
 import dev.mateusneres.pixpayviewbackend.exceptions.EmailAlreadyExistsException;
 import dev.mateusneres.pixpayviewbackend.exceptions.ForbiddenException;
 import dev.mateusneres.pixpayviewbackend.repositories.UserRepository;
-import dev.mateusneres.pixpayviewbackend.security.jwt.JwtUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
