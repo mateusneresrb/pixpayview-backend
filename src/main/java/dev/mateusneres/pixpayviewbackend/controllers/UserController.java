@@ -38,8 +38,8 @@ public class UserController {
         }
     }
 
-    //TODO NEED ADMIN PERMISSION
     @DeleteMapping(value = "/{id}/delete")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String userID) {
         try {
             UUID uuid = UUID.fromString(userID);
