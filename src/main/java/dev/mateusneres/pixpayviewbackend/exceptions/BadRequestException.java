@@ -1,9 +1,11 @@
 package dev.mateusneres.pixpayviewbackend.exceptions;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-@AllArgsConstructor
+@Getter
+@RequiredArgsConstructor
 public class BadRequestException extends CustomException {
 
     private final int errorCode;
@@ -12,16 +14,6 @@ public class BadRequestException extends CustomException {
     @Override
     public int getStatusCode() {
         return HttpStatus.BAD_REQUEST.value();
-    }
-
-    @Override
-    public int getErrorCode() {
-        return this.errorCode;
-    }
-
-    @Override
-    public String getErrorMessage() {
-        return this.errorMessage;
     }
 
 }

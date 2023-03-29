@@ -15,5 +15,5 @@ public class EmailAlreadyExistsException extends CustomException {
     public int getStatusCode() {
         return HttpStatus.CONFLICT.value();
     }
-    
+
 }

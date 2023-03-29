@@ -1,10 +1,12 @@
 package dev.mateusneres.pixpayviewbackend.exceptions;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+@Getter
 @RequiredArgsConstructor
-public class AccountAlreadyExistsException extends CustomException{
+public class AccountAlreadyExistsException extends CustomException {
 
     private final int errorCode;
     private final String errorMessage;
@@ -12,16 +14,6 @@ public class AccountAlreadyExistsException extends CustomException{
     @Override
     public int getStatusCode() {
         return HttpStatus.CONFLICT.value();
-    }
-
-    @Override
-    public int getErrorCode() {
-        return this.errorCode;
-    }
-
-    @Override
-    public String getErrorMessage() {
-        return this.errorMessage;
     }
 
 }
