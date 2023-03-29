@@ -51,7 +51,7 @@ public class AuthService {
 
     public UserDetailsResponse register(SignupRequest signupRequest) {
         if (userRepository.existsUserByEmail(signupRequest.getEmail())) {
-            throw new AccountAlreadyExistsException(301, "The email: " + signupRequest.getEmail() + " address you entered is already registered.");
+            throw new AccountAlreadyExistsException(3000, "The email: " + signupRequest.getEmail() + " address you entered is already registered.");
         }
 
         User user = new User(

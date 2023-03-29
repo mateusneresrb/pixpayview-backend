@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public ResponseEntity<Object> deleteUser(UUID id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new AccountNotExistsException(404, "Account by id: " + id.toString() + " not exists!"));
+        User user = userRepository.findById(id).orElseThrow(() -> new AccountNotExistsException(4000, "Account by id: " + id + " not exists!"));
 
         userRepository.delete(user);
         return ResponseEntity.status(204).build();
@@ -56,11 +56,11 @@ public class UserService {
 
         User user = optionalTargetUser.get();
         if (!optionalUser.get().getUserID().equals(userID) && optionalUser.get().getRole() != Role.ROLE_ADMIN) {
-            throw new ForbiddenException(2, "Usuário não tem permissão para alterar as configurações de outro usuário");
+            throw new ForbiddenException(7000, "You don't have enough permissions to change another user's settings.");
         }
 
         if (userRepository.existsUserByEmail(userSettingsRequest.getEmail())) {
-            throw new EmailAlreadyExistsException(3, "Existe um usuário utilizando o email!");
+            throw new EmailAlreadyExistsException(3001, "The email address " + userSettingsRequest.getEmail() + " is not available for use.");
         }
 
         if (userSettingsRequest.getEmail() != null) user.setEmail(userSettingsRequest.getEmail());

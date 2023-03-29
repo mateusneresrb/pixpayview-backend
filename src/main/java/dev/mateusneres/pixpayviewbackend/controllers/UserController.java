@@ -26,7 +26,7 @@ public class UserController {
     @PutMapping(value = "/{id}/settings")
     public ResponseEntity<Object> updateUser(@Valid @RequestBody() UserSettingsRequest userSettingsRequest, Authentication authentication, BindingResult bindingResult, @PathVariable("id") String userID) {
         if (bindingResult.hasErrors()) {
-            throw new BadRequestException(1, "Request inválido");
+            throw new BadRequestException(5000, "The request sent is invalid, check a application documentation.");
         }
 
         try {
@@ -34,7 +34,7 @@ public class UserController {
 
             return userService.updateSettings(authentication.getName(), uuid, userSettingsRequest);
         } catch (IllegalArgumentException exception) {
-            throw new BadRequestException(1, "Request inválido");
+            throw new BadRequestException(5000, "The request sent is invalid, check a application documentation.");
         }
     }
 
@@ -46,7 +46,7 @@ public class UserController {
 
             return userService.deleteUser(uuid);
         } catch (IllegalArgumentException exception) {
-            throw new BadRequestException(1, "Request inválido");
+            throw new BadRequestException(5000, "The request sent is invalid, check a application documentation.");
         }
     }
 
