@@ -13,7 +13,7 @@ public class AccountNotExistsException extends CustomException {
 
     @Override
     public int getStatusCode() {
-        return HttpStatus.CONFLICT.value();
+        return HttpStatus.NOT_FOUND.value();
     }
 
 }
