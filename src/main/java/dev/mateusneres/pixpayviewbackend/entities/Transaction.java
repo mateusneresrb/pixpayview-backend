@@ -24,7 +24,7 @@ public class Transaction {
     @Column(nullable = false)
     private TransactionStatus status;
 
-    @Column(nullable = false)
+    @Column
     private String qrcode;
 
     @Column(nullable = false)
@@ -40,5 +40,14 @@ public class Transaction {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Transaction(TransactionStatus status, String qrcode, double price, Timestamp updatedAt, Timestamp createdAt, User user) {
+        this.status = status;
+        this.qrcode = qrcode;
+        this.price = price;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.user = user;
+    }
 
 }
