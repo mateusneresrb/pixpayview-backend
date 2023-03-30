@@ -27,8 +27,8 @@ public class Transaction {
     @Column(nullable = false)
     private String qrcode;
 
-    @Column
-    private double pricing;
+    @Column(nullable = false)
+    private double price;
 
     @Column(nullable = false)
     private Timestamp updatedAt;
