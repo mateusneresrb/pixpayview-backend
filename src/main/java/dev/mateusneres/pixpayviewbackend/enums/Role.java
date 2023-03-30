@@ -2,6 +2,6 @@ package dev.mateusneres.pixpayviewbackend.enums;
 
 public enum Role {
 
-    DEFAULT, ADMIN
+    ROLE_USER, ROLE_ADMIN
 
 }
