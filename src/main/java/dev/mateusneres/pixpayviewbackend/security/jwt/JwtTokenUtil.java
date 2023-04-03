@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class JwtTokenUtil {
@@ -20,13 +18,20 @@ public class JwtTokenUtil {
     @Value("${jwt.expiration}")
     private Long expiration;
 
+    private List<String> tokenList = new ArrayList<>();
+
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", userDetails.getUsername());
         claims.put("email", userDetails.getUsername());
         claims.put("created", new Date());
-        return Jwts.builder().setClaims(claims).setExpiration(generateExpirationDate())
+
+        String token = Jwts.builder().setClaims(claims).setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
+
+        tokenList.add(token);
+
+        return token;
     }
 
     public String getEmailFromToken(String token) {
@@ -54,6 +59,11 @@ public class JwtTokenUtil {
     public Boolean isTokenValid(String token, UserDetails userDetails) {
         JwtUserDetails user = (JwtUserDetails) userDetails;
         final String email = getEmailFromToken(token);
-        return (email.equals(user.getUsername()) && !isTokenExpired(token));
+        return (email.equals(user.getUsername()) && !isTokenExpired(token) && tokenList.contains(token));
     }
+
+    public void removeToken(String token) {
+        tokenList.remove(token);
+    }
+
 }

@@ -33,15 +33,15 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(userDetailsService)
                 .formLogin().disable()
-                .securityMatcher("/**")
-                .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/auth/login", "/auth/refreshtoken", "/auth/signup").permitAll()
-                        .anyRequest().authenticated()
-                );
+                .securityMatcher("/**");
+
+//                .authorizeHttpRequests(registry -> registry
+//                        .requestMatchers("/auth/login", "/auth/refreshtoken", "/auth/signup").permitAll()
+//                        .anyRequest().authenticated()
+                //);
 
         http.headers(headers -> headers.frameOptions().sameOrigin());
         return http.build();
     }
-
 
 }
