@@ -5,6 +5,7 @@ import dev.mateusneres.pixpayviewbackend.enums.TransactionStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
@@ -20,11 +21,15 @@ public class Transaction {
     @Column(nullable = false, unique = true)
     private long transactionID;
 
+    @Column(nullable = false)
+    private long paymentID;
+
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TransactionStatus status;
 
-    @Column
+    @Column(nullable = false)
     private String qrcode;
 
     @Column(nullable = false)
@@ -41,7 +46,8 @@ public class Transaction {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Transaction(TransactionStatus status, String qrcode, double price, Timestamp updatedAt, Timestamp createdAt, User user) {
+    public Transaction(long paymentID, TransactionStatus status, String qrcode, double price, Timestamp updatedAt, Timestamp createdAt, User user) {
+        this.paymentID = paymentID;
         this.status = status;
         this.qrcode = qrcode;
         this.price = price;
