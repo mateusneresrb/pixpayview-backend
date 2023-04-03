@@ -40,7 +40,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private Timestamp updatedAt;
 
     @Column(nullable = false, updatable = false)
@@ -55,6 +55,14 @@ public class User {
         this.role = role;
         this.password = password;
         this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+    }
+
+    public User(String email, String name, Role role, String password, Timestamp createdAt) {
+        this.email = email;
+        this.name = name;
+        this.role = role;
+        this.password = password;
         this.createdAt = createdAt;
     }
 
