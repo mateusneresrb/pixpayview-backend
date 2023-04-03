@@ -113,9 +113,35 @@ curl -X DELETE \
   -H 'Content-Type: application/json'
 ```
 ---
+<a id="transaction-list">List Transactions</a>
+```
+curl -X 'GET' \
+  'http://localhost:8080/transactions/list' \
+  -H 'accept: application/json'
+```
+<a id="transaction">View transaction</a>
+```
+curl -X 'GET' \
+  'http://localhost:8080/transactions/{id}' \
+  -H 'accept: application/json'
+```
+<a id="transaction-create">Create Transaction</a>
+```bash
+curl -X POST \
+  http://localhost:8080/transactions/create \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"price": 10.00
+  }'
+```
+<a id="transaction-delete">Delete Transaction</a> `Only ROLE_ADMIN authenticated`
+```bash
+curl -X DELETE \
+  http://localhost:8080/transactions/{id}/delete \
+  -H 'Content-Type: application/json'
+```
+---
 
-
-//EXAMPLES CADA PARTE...
 
 In construction...
 
