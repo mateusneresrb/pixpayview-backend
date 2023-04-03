@@ -34,10 +34,10 @@ All requests must be in JSON, respecting the RESTful API standard
 | DELETE | /transactions/{id}/delete | Delete transaction | [[VER MAIS]](#list-reports)  |
 
 #### Settings `(/settings)`
-| Method | Url                     | Description          | How to use                   |
-|--------|-------------------------|----------------------|------------------------------|
-| GET    | /settings/token         | View payment token   | [[VER MAIS]](#create-report) |
-| PUT    | /settings/token/update  | Update payment token | [[VER MAIS]](#list-reports)  | 
+| Method | Url                     | Description          | How to use                     |
+|--------|-------------------------|----------------------|--------------------------------|
+| GET    | /settings/token         | View payment token   | [[VER MAIS]](#settings-token)  |
+| PUT    | /settings/token/update  | Update payment token | [[VER MAIS]](#settings-update) | 
 
 #### Exception table:
 | Code | Name                          | Description                                                           |
@@ -141,10 +141,22 @@ curl -X DELETE \
   -H 'Content-Type: application/json'
 ```
 ---
-
-
-In construction...
-
+<a id="settings-token">View Payment Token</a> `Only ROLE_ADMIN authenticated`
+```
+curl -X 'GET' \
+  'http://localhost:8080/settings/token' \
+  -H 'accept: application/json'
+```
+<a id="settings-update">Update Payment Token:</a> `Only ROLE_ADMIN authenticated`
+```bash
+curl -X PUT \
+  http://localhost:8080/settings/token/update \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"paymentToken": "APP_TEST-655634621962-05455-253234sdhgc014d6sdhsdh436c-4164535"
+  }'
+```
+---
 ## 🚀 How to use?
 
 In construction...
