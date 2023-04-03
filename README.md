@@ -157,9 +157,21 @@ curl -X PUT \
   }'
 ```
 ---
-## 🚀 How to use?
+## 🚀 Technologies used
+ 
+* Java 17
+* Spring Boot
+* Spring Security
+* Mercado Pago SDK
+* Maven
+* Lombok
+* MySQL/SQLite
+* JUnit (tests)
+* JJWT
+* And others...
 
-In construction...
+## 💻 How to use?
+
 
 ## 🤝 Collaborators
 
