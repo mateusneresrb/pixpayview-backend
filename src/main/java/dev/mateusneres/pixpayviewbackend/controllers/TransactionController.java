@@ -5,7 +5,6 @@ import dev.mateusneres.pixpayviewbackend.exceptions.BadRequestException;
 import dev.mateusneres.pixpayviewbackend.services.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
@@ -27,14 +26,19 @@ public class TransactionController {
         return transactionService.createTransaction(authentication.getName(), transactionCreatorRequest);
     }
 
-    @DeleteMapping(value = "/delete")
-    public ResponseEntity<Object> deleteTransaction() {
-        //???
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Object> viewTransaction(Authentication authentication, @PathVariable("id") long transactionID) {
+        return ResponseEntity.ok(transactionService.viewTransaction(authentication.getName(), transactionID));
+    }
+
+    @DeleteMapping(value = "/{id}/delete")
+    public ResponseEntity<Object> deleteTransaction(@PathVariable("id") long transactionID) {
+        return transactionService.deleteTransaction(transactionID);
     }
 
     @GetMapping(value = "/list")
-    public ResponseEntity<Object> listTransaction() {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<Object> listTransactions(Authentication authentication) {
+        return ResponseEntity.ok(transactionService.findAllTransactions(authentication.getName()));
     }
+
 }
