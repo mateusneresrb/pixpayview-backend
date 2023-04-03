@@ -11,19 +11,19 @@ See about the frontend: https://github.com/VictorBren0/pixpayview-frontend
 All requests must be in JSON, respecting the RESTful API standard
 
 #### Authentication `(/auth)`
-| Method | Url          | Description    | How to use                   |
-|--------|--------------|----------------|------------------------------|
-| POST   | /auth/login  | Login account  | [[VER MAIS]](#create-report) |
-| POST   | /auth/signup | Create account | [[VER MAIS]](#list-reports)  | 
-| POST   | /auth/logout | Logout Account | [[VER MAIS]](#list-reports)  | 
-| POST   | /auth/token  | Refresh token  | [[VER MAIS]](#list-reports)  | 
+| Method | Url          | Description    | How to use               |
+|--------|--------------|----------------|--------------------------|
+| POST   | /auth/login  | Login account  | [[VER MAIS]](#login)     |
+| POST   | /auth/signup | Create account | [[VER MAIS]](#signup)    | 
+| POST   | /auth/logout | Logout Account | [[VER MAIS]](#logout)    | 
+| POST   | /auth/token  | Refresh token  | [[VER MAIS]](#authtoken) | 
 
 #### Users `(/users)`
-| Method | Url                  | Description    | How to use                   |
-|--------|----------------------|----------------|------------------------------|
-| GET    | /users/list          | List accounts  | [[VER MAIS]](#create-report) |
-| PUT    | /users/{id}/settings | Edit account   | [[VER MAIS]](#list-reports)  | 
-| DELETE | /users/{id}/delete   | Delete account | [[VER MAIS]](#list-reports)  |  
+| Method | Url                  | Description    | How to use                    |
+|--------|----------------------|----------------|-------------------------------|
+| GET    | /users/list          | List accounts  | [[VER MAIS]](#user-list)      |
+| PUT    | /users/{id}/settings | Edit account   | [[VER MAIS]](#edit-settings)  | 
+| DELETE | /users/{id}/delete   | Delete account | [[VER MAIS]](#delete-account) |  
 
 #### Transactions `(/transactions)`
 | Method | Url                       | Description        | How to use                   |
@@ -52,6 +52,70 @@ All requests must be in JSON, respecting the RESTful API standard
 | 7001 | PaymentTokenInvalidException  | When the payment token is refused by the Mercado pago                 |
 
 ### API Examples:
+
+<a id="login">Login (Request):</a>
+```bash
+curl -X POST \
+  http://localhost:8080/auth/login \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"email": "example@pixpayview.com",
+	"password": "pass1234"
+  }'
+```
+<a id="signup">SignUP (Request):</a> `Only ROLE_ADMIN authenticated`
+```bash
+curl -X POST \
+  http://localhost:8080/auth/signup \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"email": "example@pixpayview.com",
+	"password": "pass1234",
+	"name": "Mateus Neres",
+	"role": "ROLE_USER"
+  }'
+```
+<a id="logout">Logout:</a> 
+```bash
+curl -X POST \
+  http://localhost:8080/auth/logout \
+  -H 'Content-Type: application/json'
+```
+<a id="authtoken">Refresh token:</a>
+```bash
+curl -X POST \
+  http://localhost:8080/auth/token \
+  -H 'Content-Type: application/json'
+```
+---
+<a id="list-users">List users</a> `Only ROLE_ADMIN authenticated`
+```
+curl -X 'GET' \
+  'http://localhost:8080/users/list' \
+  -H 'accept: application/json'
+```
+<a id="update-settings">Update Settings:</a> `Some values are optional and need permission.`
+```bash
+curl -X PUT \
+  http://localhost:8080/auth/{id}/settings \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"email": "example@pixpayview.com",
+	"password": "pass1234",
+	"name": "Mateus Neres",
+	"role": "ROLE_USER"
+  }'
+```
+<a id="delete-account">Delete account:</a> `Only ROLE_ADMIN authenticated`
+```bash
+curl -X DELETE \
+  http://localhost:8080/auth/{id}/delete \
+  -H 'Content-Type: application/json'
+```
+---
+
+
+//EXAMPLES CADA PARTE...
 
 In construction...
 
