@@ -60,9 +60,9 @@ public class TransactionService {
         PaymentResponse paymentResponse = paymentService.createQRCodePixPayment(user.getName(), transactionCreatorRequest.getPrice());
 
         Transaction transaction = new Transaction(
-                paymentResponse.paymentID(),
+                paymentResponse.getPaymentID(),
                 TransactionStatus.WAITING_PAYMENT,
-                paymentResponse.QRCode(),
+                paymentResponse.getQRCode(),
                 transactionCreatorRequest.getPrice(),
                 new Timestamp(new Date().getTime()),
                 new Timestamp(new Date().getTime()),

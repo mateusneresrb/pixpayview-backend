@@ -27,13 +27,14 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @EnableScheduling
 @RequiredArgsConstructor
 public class PaymentService {
 
-    @Value(("${payment.qrcode.expires}"))
+    @Value("${payment.qrcode.expires}")
     private int timeQRCodeExpires;
 
     private final String PAYMENT_STATUS_APPROVED = "approved";
@@ -96,15 +97,15 @@ public class PaymentService {
     private List<Transaction> getFinishedTransactions(List<Transaction> transactions) {
         return transactions.stream()
                 .filter(transaction -> isPaymentFinished(transaction.getPaymentID()))
-                .peek(transaction -> transaction.setStatus(TransactionStatus.FINISHED))
-                .toList();
+                .peek(transaction -> transaction.setStatus(TransactionStatus.FINISHED)).collect(Collectors.toList());
+
     }
 
     private List<Transaction> getListExpiredQRCode(List<Transaction> transactions) {
         return transactions.stream()
                 .filter(transaction -> Duration.between(transaction.getCreatedAt().toInstant(), Instant.now()).toMinutes() >= (timeQRCodeExpires + 10))
                 .peek(transaction -> transaction.setStatus(TransactionStatus.EXPIRED_QRCODE))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private boolean isPaymentFinished(long paymentID) {
