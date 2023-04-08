@@ -1,3 +1,14 @@
 package dev.mateusneres.pixpayviewbackend.dtos.response;
 
-public record LoginResponse(String accessToken) {}
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@RequiredArgsConstructor
+public class LoginResponse {
+
+    private final String accessToken;
+
+}

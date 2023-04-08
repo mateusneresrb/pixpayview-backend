@@ -1,3 +1,15 @@
 package dev.mateusneres.pixpayviewbackend.dtos.response;
 
-public record ErrorResponse(String message, int code) {}
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@RequiredArgsConstructor
+public class ErrorResponse {
+
+    private final String message;
+    private final int code;
+
+}
