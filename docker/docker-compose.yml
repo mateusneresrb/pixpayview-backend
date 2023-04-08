@@ -7,11 +7,14 @@ services:
     ports:
       - "8080:8080"
     environment:
+      SPRING_DATASOURCE_HOSTNAME: postgresql
       SPRING_DATASOURCE_USERNAME: username
       SPRING_DATASOURCE_PASSWORD: password
       JWT_SECRET: YOUR-SECRET
       JWT_EXPIRATION: 3600
       PAYMENT_QRCODE_EXPIRES: 30
+    networks:
+      - pixpayview-net
     depends_on:
       - postgresql
 
@@ -22,5 +25,11 @@ services:
     environment:
       POSTGRES_DATABASE: pixpayview
       POSTGRES_PASSWORD: password
+    networks:
+      - pixpayview-net
     ports:
       - "5432:5432"
+
+networks:
+  pixpayview-net:
+    driver: bridge
