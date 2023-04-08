@@ -1,11 +1,15 @@
-FROM adoptopenjdk/openjdk17:alpine-jre
+FROM openjdk:17-alpine
 
-RUN apk update && apk add --no-cache git
-
+# Download some libs
+RUN apk update && apk add --no-cache git curl bash zip maven
 RUN git clone https://github.com/mateusneresrb/pixpayview-backend.git /data
 
+#Work dir
 WORKDIR /data
 
+#Execute commands
+RUN chmod +x mvnw
+RUN mvn -N io.takari:maven:wrapper
 RUN ./mvnw package -DskipTests
 
 EXPOSE 8080
