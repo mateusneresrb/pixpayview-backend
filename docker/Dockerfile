@@ -8,7 +8,6 @@ RUN git clone https://github.com/mateusneresrb/pixpayview-backend.git /data && c
 WORKDIR /data
 
 #Execute commands
-RUN chmod +x mvnw
 RUN mvn -N io.takari:maven:wrapper
 RUN ./mvnw package -DskipTests
 
