@@ -9,7 +9,7 @@ services:
     environment:
       SPRING_DATASOURCE_USERNAME: username
       SPRING_DATASOURCE_PASSWORD: password
-      JWT_SECRET: YOU-KEY
+      JWT_SECRET: YOUR-SECRET
       JWT_EXPIRATION: 3600
       PAYMENT_QRCODE_EXPIRES: 30
     depends_on:
@@ -20,6 +20,7 @@ services:
     image: postgres
     restart: always
     environment:
+      POSTGRES_DATABASE: pixpayview
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"

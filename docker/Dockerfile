@@ -2,7 +2,7 @@ FROM openjdk:17-alpine
 
 # Download some libs
 RUN apk update && apk add --no-cache git curl bash zip maven
-RUN git clone https://github.com/mateusneresrb/pixpayview-backend.git /data
+RUN git clone https://github.com/mateusneresrb/pixpayview-backend.git /data && cd /data && git pull origin main
 
 #Work dir
 WORKDIR /data
