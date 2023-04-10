@@ -164,6 +164,7 @@ curl -X PUT \
 * Spring Security
 * Mercado Pago SDK
 * Maven
+* Docker
 * Lombok
 * MySQL/SQLite
 * JUnit (tests)
@@ -172,9 +173,13 @@ curl -X PUT \
 
 ## 💻 How to use?
 
-in construction...
+1. Clone this repository;
+2. Browse to the docker folder
+3. Open the file `docker-compose.yml` and change some settings like database password and secret code
+4. Open the terminal and type `docker compose up`
+5. After typing the above command docker will create a postgres server and download the files from this repository and compile the project, after that it will start the server.
 
-
+`* It is very important that you change the information in the docker-compose.yml file`
 ## 🤝 Collaborators
 
 <table>
