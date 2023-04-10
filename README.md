@@ -179,7 +179,11 @@ curl -X PUT \
 4. Open the terminal and type `docker compose up`
 5. After typing the above command docker will create a postgres server and download the files from this repository and compile the project, after that it will start the server.
 
+
 `* It is very important that you change the information in the docker-compose.yml file`
+
+`* You need to have docker installed to use this project in a simple way`
+
 ## 🤝 Collaborators
 
 <table>
