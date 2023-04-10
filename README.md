@@ -13,31 +13,31 @@ All requests must be in JSON, respecting the RESTful API standard
 #### Authentication `(/auth)`
 | Method | Url          | Description    | How to use               |
 |--------|--------------|----------------|--------------------------|
-| POST   | /auth/login  | Login account  | [[VER MAIS]](#login)     |
-| POST   | /auth/signup | Create account | [[VER MAIS]](#signup)    | 
-| POST   | /auth/logout | Logout Account | [[VER MAIS]](#logout)    | 
-| POST   | /auth/token  | Refresh token  | [[VER MAIS]](#authtoken) | 
+| POST   | /auth/login  | Login account  | [[VIEW MORE]](#login)     |
+| POST   | /auth/signup | Create account | [[VIEW MORE]](#signup)    | 
+| POST   | /auth/logout | Logout Account | [[VIEW MORE]](#logout)    | 
+| POST   | /auth/token  | Refresh token  | [[VIEW MORE]](#authtoken) | 
 
 #### Users `(/users)`
 | Method | Url                  | Description    | How to use                    |
 |--------|----------------------|----------------|-------------------------------|
-| GET    | /users/list          | List accounts  | [[VER MAIS]](#user-list)      |
-| PUT    | /users/{id}/settings | Edit account   | [[VER MAIS]](#edit-settings)  | 
-| DELETE | /users/{id}/delete   | Delete account | [[VER MAIS]](#delete-account) |  
+| GET    | /users/list          | List accounts  | [[VIEW MORE]](#user-list)      |
+| PUT    | /users/{id}/settings | Edit account   | [[VIEW MORE]](#edit-settings)  | 
+| DELETE | /users/{id}/delete   | Delete account | [[VIEW MORE]](#delete-account) |  
 
 #### Transactions `(/transactions)`
 | Method | Url                       | Description        | How to use                   |
 |--------|---------------------------|--------------------|------------------------------|
-| GET    | /transactions/list        | List transactions  | [[VER MAIS]](#create-report) |
-| GET    | /transactions/{id}        | View transaction   | [[VER MAIS]](#list-reports)  | 
-| POST   | /transactions/{id}/create | Create transaction | [[VER MAIS]](#list-reports)  | 
-| DELETE | /transactions/{id}/delete | Delete transaction | [[VER MAIS]](#list-reports)  |
+| GET    | /transactions/list        | List transactions  | [[VIEW MORE]](#create-report) |
+| GET    | /transactions/{id}        | View transaction   | [[VIEW MORE]](#list-reports)  | 
+| POST   | /transactions/{id}/create | Create transaction | [[VIEW MORE]](#list-reports)  | 
+| DELETE | /transactions/{id}/delete | Delete transaction | [[VIEW MORE]](#list-reports)  |
 
 #### Settings `(/settings)`
 | Method | Url                     | Description          | How to use                     |
 |--------|-------------------------|----------------------|--------------------------------|
-| GET    | /settings/token         | View payment token   | [[VER MAIS]](#settings-token)  |
-| PUT    | /settings/token/update  | Update payment token | [[VER MAIS]](#settings-update) | 
+| GET    | /settings/token         | View payment token   | [[VIEW MORE]](#settings-token)  |
+| PUT    | /settings/token/update  | Update payment token | [[VIEW MORE]](#settings-update) | 
 
 #### Exception table:
 | Code | Name                          | Description                                                           |
