@@ -5,8 +5,9 @@ services:
     container_name: PixPayView-API
     build: .
     ports:
-      - "8080:8080"
+      - "80:80"
     environment:
+      SERVER_PORT: 80
       SPRING_DATASOURCE_HOSTNAME: postgresql
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
