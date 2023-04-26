@@ -4,6 +4,7 @@ import dev.mateusneres.pixpayview.dtos.request.UserSettingsRequest;
 import dev.mateusneres.pixpayview.dtos.response.UserDetailsResponse;
 import dev.mateusneres.pixpayview.exceptions.BadRequestException;
 import dev.mateusneres.pixpayview.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class UserController {
 
     private final UserService userService;
 
+    @Operation(summary = "Update a user settings")
     @PutMapping(value = "/{id}/settings")
     public ResponseEntity<Object> updateUser(@Valid @RequestBody() UserSettingsRequest userSettingsRequest, Authentication authentication, BindingResult bindingResult, @PathVariable("id") String userID) {
         if (bindingResult.hasErrors()) {
@@ -38,6 +40,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Delete a user")
     @DeleteMapping(value = "/{id}/delete")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") String userID) {
@@ -50,6 +53,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "List all users")
     @GetMapping(value = "/list")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UserDetailsResponse>> listUsers() {
