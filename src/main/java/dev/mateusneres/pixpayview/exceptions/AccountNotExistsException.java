@@ -1,0 +1,19 @@
+package dev.mateusneres.pixpayview.exceptions;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+
+@Getter
+@RequiredArgsConstructor
+public class AccountNotExistsException extends CustomException {
+
+    private final int errorCode;
+    private final String errorMessage;
+
+    @Override
+    public int getStatusCode() {
+        return HttpStatus.NOT_FOUND.value();
+    }
+
+}
