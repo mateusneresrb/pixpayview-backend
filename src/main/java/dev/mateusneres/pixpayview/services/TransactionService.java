@@ -94,7 +94,7 @@ public class TransactionService {
     }
 
     public ResponseEntity<Object> deleteTransaction(long transactionID) {
-        Transaction transaction = transactionRepository.findById(transactionID).orElseThrow(() -> new AccountNotExistsException(4002, "Transaction by id: " + transactionID + " not exists!"));
+        Transaction transaction = transactionRepository.findById(transactionID).orElseThrow(() -> new TransactionNotExistsException(4002, "Transaction by id: " + transactionID + " not exists!"));
 
         transactionRepository.delete(transaction);
         return ResponseEntity.status(204).build();
