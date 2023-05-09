@@ -34,7 +34,7 @@ public class AppConfig {
             User user = new User("admin@pixpayview.com",
                     "Admin PixPayView",
                     Role.ROLE_ADMIN,
-                    bCryptPasswordEncoder().encode("pixpayview010101"),
+                    "$2a$10$t06EeQEVT7Z39Ol6m2UGReKnICsJH6aM2tp5gz62JyXY8koMootTu",
                     new Timestamp(new Date().getTime()));
 
             userRepository.save(user);
